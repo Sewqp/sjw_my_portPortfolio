@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Jin's Portfolio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+
+        .big-desc { font-size: 3.5rem; line-height: 1.2; letter-spacing: -1px; }
+        .sub-desc { font-size: 1.2rem; color: #666; margin-top: 30px; line-height: 1.6; }
+        strong { color: #000; font-weight: 800; }
+    </style>
+</head>
+<body>
+
+    <nav class="side-nav">
+        <ul>
+            <li><a href="#home" title="Home" class="nav-link"></a></li>
+            <li><a href="#about" title="About" class="nav-link"></a></li>
+            <li><a href="#portfolio" title="Portfolio" class="nav-link"></a></li>
+            <li><a href="#contact" title="Contact" class="nav-link"></a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="magazine-cover">
+        <div class="top-info">
+            <div class="info-col"><strong>Jin:</strong><br>Backend Dev</div>
+            <div class="info-col"><strong>Location:</strong><br>Incheon, KR</div>
+        </div>
+        <div class="bottom-title">Portfolio</div>
+    </header>
+
+    <main>
+        <section id="about" class="section-container">
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h2 style="font-size: 1rem; color: #999; margin-bottom: 20px;">About Me</h2>
+                    
+                    <p class="big-desc">
+                        고객의 경험을 지키는<br>
+                        <strong>무결성(Integrity)을 지닌 견고한 구조</strong>를<br> 설계하는
+                        서버 엔지니어 <strong>서진우</strong>입니다.
+                    </p>     
+                    
+                    <p class="sub-desc">
+                       서비스에서 데이터의 가치는 고객의 신뢰와 직결됨을 이해하고 있습니다.<br>
+                        <strong>CS 지식(OS, Network)</strong>과 <strong>자료구조</strong>에 대한 깊은 이해를 바탕으로,<br>
+                        트래픽이 몰려도 중단되지 않는 <strong>안정적인 아키텍처</strong>를 구현합니다. </p>
+                </div>
+                <div class="about-photo">
+                    <img src="/images/me.jpg" alt="Jin">
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section-container bg-gray">
+            <div class="portfolio-header">
+                <h2>Selected Works</h2>
+            </div>
+            
+        <div class="portfolio-list">
+                
+                <div class="project-row">
+                    <div class="pj-img">
+                        <a href="<%= projects[0].link %>" target="_blank">
+                            <img src="/images/p1.jpg" alt="music" onerror="this.src='https://via.placeholder.com/600x400'">
+                        </a>
+                    </div>
+                    <div class="pj-text">
+                        <h3>PR<br> 음악 스트리밍</h3>
+                        <p class="desc">Backend Dev <br><br> 
+                            로그인 / 업로드 <br>
+                            실시간 채팅 및 소켓 통신 구현<br>
+                            및 전체 작업 수행</p>
+                        <p class="period">10.02.2025 ~ 11.30.2025</p>
+                    </div>
+                </div>
+
+                <div class="project-row">
+                    <div class="pj-img">
+                        <a href="<%= projects[1].link %>" target="_blank">
+                            <img src="/images/p2.jpg" alt="board" onerror="this.src='https://via.placeholder.com/600x400'">
+                        </a>
+                    </div>
+                    <div class="pj-text">
+                        <h3>PR<br> GUI<br> 게시판</h3>
+                        <p class="desc">Backend Dev <br><br>
+                            데이터베이스와 연결 <br>
+                            게시판에 필요한 다양한 기능을<br>
+                            JAVA 를 이용하여 구현</p>
+                        <p class="period">05.02.2025 ~ 06.30.2025</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="section-container">
+            <h2>Contact</h2>
+            <p>mochayong@naver.com</p>
+            <p>Last Updated: December 1, 2025</p>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('header, section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        sections.forEach(section => { observer.observe(section); });
+    </script>
+
+</body>
+</html>Contact
